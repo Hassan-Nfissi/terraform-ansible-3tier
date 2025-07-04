@@ -1,27 +1,26 @@
 
-
 # 3-Tier Deployment on Azure with Terraform + Ansible
 
 ![Architecture Diagram](./docs/architecture-diagram.png)
-*Architecture 3-Tier : Frontend - Backend - Database*
+*3-Tier Architecture: Frontend - Backend - Database*
 
 ---
 
-## 🚀 Présentation
+## 🚀 Overview
 
-Ce projet déploie une infrastructure **3-tiers** complète sur **Microsoft Azure** en combinant :
+This project deploys a complete **3-tier** infrastructure on **Microsoft Azure** using a combination of:
 
-* **Terraform** pour l’Infrastructure as Code (IaC) : provisionnement des VMs, réseaux, groupes de sécurité.
-* **Ansible** pour la configuration et le déploiement applicatif sur chaque VM (Nginx, Spring Boot, MySQL).
-* Une application **Meal Tracker** déployée sur cette infrastructure, avec :
+* **Terraform** for Infrastructure as Code (IaC): provisioning VMs, networks, and security groups.
+* **Ansible** for configuration and application deployment on each VM (Nginx, Spring Boot, MySQL).
+* A **Meal Tracker** application deployed on this infrastructure, featuring:
 
-  * Frontend Nginx qui sert une interface web Bootstrap moderne.
-  * Backend Spring Boot pour la logique métier.
-  * Base de données MySQL hébergée dans un réseau sécurisé.
+  * An Nginx frontend serving a modern Bootstrap web interface.
+  * A Spring Boot backend handling business logic.
+  * A MySQL database hosted in a secure network.
 
 ---
 
-## 📁 Structure du Projet
+## 📁 Project Structure
 
 ```plaintext
 3-tier-deployment/
@@ -29,9 +28,9 @@ Ce projet déploie une infrastructure **3-tiers** complète sur **Microsoft Azur
 ├── ansible/                       
 ├── app/                           
 ├── docs/                         
-│   ├── architecture-diagram.png  # Diagramme architecture 3-tier
-│   ├── azure-resources.png       # Capture écran ressources Azure (VMs, réseaux, NSG)
-│   └── meal-tracker/             # Screenshots site Meal Tracker
+│   ├── architecture-diagram.png     # 3-Tier architecture diagram
+│   ├── azure-resources.png          # Screenshot of Azure resources (VMs, networks, NSGs)
+│   └── meal-tracker/                # Screenshots of the Meal Tracker site
 │       ├── meal-tracker-home.png
 │       └── meal-tracker-add-meal.png
 ├── README.md                      
@@ -40,33 +39,33 @@ Ce projet déploie une infrastructure **3-tiers** complète sur **Microsoft Azur
 
 ---
 
-## 🖼️ Captures d’écran clés
+## 🖼️ Key Screenshots
 
-| Description                              | Aperçu                                                          
-| ---------------------------------------- | --------------------------------------------------------------- |
-| **Architecture 3-Tier**                  | ![Architecture](./docs/architecture-diagram.png)                |
-| **Ressources Azure déployées**           | ![Azure Resources](./docs/azure-resources.png)                  |
-| **Site Meal Tracker - Accueil**          | ![Meal Tracker Home](./docs/meal-tracker/meal-tracker-home.png) |
-| **Site Meal Tracker - Ajouter un repas** | ![Add Meal](./docs/meal-tracker/meal-tracker-add-meal.png)      |
+| Description                         | Preview                                                         |
+| ----------------------------------- | --------------------------------------------------------------- |
+| **3-Tier Architecture**             | ![Architecture](./docs/architecture-diagram.png)                |
+| **Deployed Azure Resources**        | ![Azure Resources](./docs/azure-resources.png)                  |
+| **Meal Tracker Website - Home**     | ![Meal Tracker Home](./docs/meal-tracker/meal-tracker-home.png) |
+| **Meal Tracker Website - Add Meal** | ![Add Meal](./docs/meal-tracker/meal-tracker-add-meal.png)      |
 
 ---
 
-## 🛠 Stack Technique
+## 🛠 Tech Stack
 
-| Categorie          | Outils / Technologies             |
+| Category           | Tools / Technologies              |
 | ------------------ | --------------------------------- |
-| Infrastructure IaC | Terraform (Azure Provider)        |
+| IaC Infrastructure | Terraform (Azure Provider)        |
 | Configuration      | Ansible (Playbooks + Roles)       |
-| Serveurs           | Azure Virtual Machines            |
-| Frontend Web       | Nginx + Bootstrap 5 + HTML5 + CSS |
+| Servers            | Azure Virtual Machines            |
+| Web Frontend       | Nginx + Bootstrap 5 + HTML5 + CSS |
 | Backend            | Spring Boot (Java, app.jar)       |
-| Base de données    | MySQL (installé via Ansible)      |
+| Database           | MySQL (installed via Ansible)     |
 
 ---
 
-## ⚙️ Comment déployer ?
+## ⚙️ How to Deploy?
 
-### 1. Provisionner l'infrastructure Azure avec Terraform
+### 1. Provision Azure Infrastructure with Terraform
 
 ```bash
 cd terraform
@@ -75,7 +74,7 @@ terraform apply
 ./generate_inventory.sh > ../ansible/inventory.ini
 ```
 
-### 2. Déployer et configurer les applications avec Ansible
+### 2. Deploy and Configure Applications with Ansible
 
 ```bash
 cd ../ansible
@@ -84,10 +83,10 @@ ansible-playbook -i inventory.ini playbooks/backend.yml
 ansible-playbook -i inventory.ini playbooks/frontend.yml
 ```
 
-### 3. Résultat
+### 3. Result
 
-* Nginx sert la page web sur l’IP publique frontend
-* Spring Boot tourne en backend, communiquant avec MySQL sécurisé
-* Base de données accessible uniquement depuis backend
+* Nginx serves the web page on the frontend public IP
+* Spring Boot runs in the backend, communicating with the secure MySQL database
+* Database is accessible only from the backend
 
 ---
