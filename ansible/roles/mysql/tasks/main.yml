@@ -1,0 +1,37 @@
+- name: Install MySQL
+  apt:
+    name: mysql-server
+    state: present
+    update_cache: yes
+
+- name: Change bind-address
+  lineinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: '^bind-address'
+    line: 'bind-address = 0.0.0.0'
+  notify: Restart MySQL
+
+- name: Create database
+  mysql_db:
+    name: myappdb
+    state: present
+
+- name: Create user
+  mysql_user:
+    name: springuser
+    password: springpass
+    priv: 'myappdb.*:ALL'
+    host: '%'
+    state: present
+
+- name: Allow MySQL through firewall (optional if firewall used)
+  ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+
+handlers:
+  - name: Restart MySQL
+    service:
+      name: mysql
+      state: restarted

@@ -1,0 +1,5 @@
+- name: Setup NGINX on Frontend VM
+  hosts: frontend
+  become: yes
+  roles:
+    - nginx

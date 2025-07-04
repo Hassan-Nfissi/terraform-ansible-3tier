@@ -1,0 +1,21 @@
+- name: Install Java
+  apt:
+    name: openjdk-11-jdk
+    state: present
+    update_cache: yes
+
+- name: Create app directory
+  file:
+    path: /opt/app
+    state: directory
+
+- name: Copy app.jar
+  copy:
+    src: app.jar
+    dest: /opt/app/app.jar
+    mode: '0755'
+
+- name: Run Spring Boot App
+  shell: "nohup java -jar /opt/app/app.jar > /opt/app/output.log 2>&1 &"
+  args:
+    chdir: /opt/app

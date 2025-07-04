@@ -1,0 +1,5 @@
+- name: Deploy Spring Boot App
+  hosts: backend
+  become: yes
+  roles:
+    - springboot
